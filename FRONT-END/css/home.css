@@ -1,0 +1,271 @@
+* {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgba(0, 0, 0, 1);
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.section {
+    height: 100vh;
+    /* Cover the full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Anton;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Add a background color for better visibility */
+}
+
+a {
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    text-decoration: none;
+}
+
+#image-container {
+    position: absolute;
+    top: 15%;
+    left: 40%;
+    text-align: left;
+    /* Center text horizontally */
+}
+
+#image-container img {
+    max-width: 30%;
+    max-height: 30%;
+}
+
+.text-class {
+    position: absolute;
+    top: 50%;
+    left: 24%;
+    max-width: 50%;
+    font-size: 400%;
+    font-family: Anton;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    /* Center text horizontally */
+
+}
+
+
+.hometext {
+    position: fixed;
+    top: 2%;
+    left: 1%;
+    font-family: Anton;
+    color: rgb(255, 255, 255);
+}
+
+.about {
+    position: fixed;
+    top: 110%;
+    left: 10%;
+    font-family: Anton;
+    color: rgb(255, 255, 255);
+}
+
+#navbar {
+    color: rgb(255, 255, 255);
+    position: fixed;
+    top: 0;
+    right: -13%;
+    height: 8%;
+    line-height: 60px;
+    width: 100%;
+    z-index: 10;
+}
+
+.nav-wrapper {
+    margin: auto;
+    text-align: center;
+    width: 70%;
+}
+
+#navbar ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    list-style: none;
+    margin-top: -2px;
+    width: 100%;
+    transition: transform 0.5s ease-out;
+}
+
+#navbar li {
+    display: inline-block;
+    margin: 0 10px;
+    position: relative;
+    font-family: Anton;
+}
+
+#navbar li:last-child {
+    margin-right: 0;
+}
+
+#navbar li a {
+    color: rgb(255, 255, 255);
+    display: block;
+    font-size: 1em;
+    height: 100%;
+    padding: 0 4px;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.5s ease;
+}
+
+#navbar li a:before,
+#navbar li a:after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 1px;
+    bottom: -1px;
+    background: rgb(255, 255, 255);
+}
+
+#navbar li a:before {
+    left: 0;
+    transition: 0.5s;
+}
+
+#navbar li a:after {
+    background: rgb(255, 255, 255);
+    right: 0;
+}
+
+#navbar li a:hover:before {
+    background: rgb(255, 255, 255);
+    width: 100%;
+    transition: width 0.5s cubic-bezier((0.22, 0.61, 0.36, 1));
+}
+
+#navbar li a:hover:after {
+    background: transparent;
+    width: 100%;
+}
+
+
+.head-tag1 {
+    color: rgba(255, 255, 255, 1);
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    line-height: normal;
+    position: absolute;
+    top: 10%;
+    left: 45%;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    font-family: Anton;
+    font-size: 200%;
+    font-stretch: normal;
+    font-style: Regular;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.head-tag2 {
+    color: rgba(255, 255, 255, 1);
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    line-height: normal;
+    position: absolute;
+    top: 10%;
+    left: 45%;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    font-family: Anton;
+    font-size: 200%;
+    font-stretch: normal;
+    font-style: Regular;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.head-tag3 {
+    color: rgba(255, 255, 255, 1);
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    line-height: normal;
+    position: absolute;
+    top: 10%;
+    left: 45%;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    font-family: Anton;
+    font-size: 200%;
+    font-stretch: normal;
+    font-style: Regular;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.head-tag4 {
+    color: rgba(255, 255, 255, 1);
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    line-height: normal;
+    position: absolute;
+    top: 10%;
+    left: 45%;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    font-family: Anton;
+    font-size: 200%;
+    font-stretch: normal;
+    font-style: Regular;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.about-image {
+    max-width: 40%;
+    max-height: 40%;
+    display: block;
+}
+
+.corner-container {
+    position: relative; 
+    top: 40%;
+    left: 10%;
+    width: 100%;
+    height: 100%;
+}
+
+.section {
+    position: relative;
+}
+
+.about-text {
+    max-width: 100%;
+    max-height: 5%;
+    display: block;
+    text-align: left;
+    position: absolute;
+    top: 0%;
+    left: 65%; /* Adjust the left value for center alignment */
+    transform: translateX(-50%); /* Center align the text horizontally */
+    font-stretch: normal;
+    font-style: semiBold; /* This should be font-weight: semi-bold; */
+    font-weight: 600; /* Use a numeric value for font weight */
+    text-decoration: none;
+    font-family: 'IBM Plex Sans';
+    font-size: max(1.5vw, 1.5vh);
+    line-height: normal;
+    color: rgb(243, 243, 243);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px 0px;
+}
+
