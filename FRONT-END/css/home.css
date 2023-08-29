@@ -16,7 +16,6 @@ html {
 
 .section {
     height: 100vh;
-    /* Cover the full viewport height */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,7 +23,6 @@ html {
     color: rgb(255, 255, 255);
     text-align: center;
     background-color: rgba(0, 0, 0, 0.5);
-    /* Add a background color for better visibility */
 }
 
 a {
@@ -751,11 +749,10 @@ input {
 .how-text{
     position: absolute;
     top: 20%;
-    left: 25%;
+    left: 27%;
     max-width: 50%;
     font-weight: 300;
     font-size: max(1.5vw, 1.5vh);
     font-family: 'IBM Plex Sans';
     font-weight: lighter
 }
-
