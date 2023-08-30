@@ -1,0 +1,37 @@
+Channel Information Analysis (get_channel_info.py):
+
+Analyze subscriber count, view count, and video count trends over time.
+Compare channel descriptions and titles to identify common themes.
+Video Information Analysis (get_video_info.py):
+
+Analyze view counts, like counts, comment counts, and other video metrics.
+Identify the most popular videos based on view counts and engagement.
+Analyze video descriptions to find common keywords or themes.
+Video Comment Analysis (retrieve_video_comments.py):
+
+Analyze sentiment of video comments to understand audience reactions.
+Identify frequently mentioned topics or keywords in the comments.
+Playlist Information Analysis (get_playlist_info.py):
+
+Analyze the distribution of videos across playlists.
+Identify trends in playlist creation and video categorization.
+Video Search Analysis (search_videos.py):
+
+Analyze the relevance of search results for specific keywords.
+Compare the performance of different videos based on search queries.
+Related Video Analysis (get_related_videos.py):
+
+Analyze the relationships between videos based on relatedness.
+Understand which videos are commonly watched together.
+Video Engagement Analysis (analyze_video_engagement.py):
+
+Calculate engagement ratios (likes-to-views, comments-to-views, etc.).
+Identify trends in engagement metrics across videos.
+Viewer Behavior Analysis (analyze_viewer_behavior.py):
+
+Analyze average view percentage to understand viewer engagement.
+Identify patterns in how long viewers tend to watch videos.
+Video Performance Analysis (analyze_video_performance.py):
+
+Compare the performance of different videos based on views, likes, etc.
+Analyze the impact of titles and descriptions on video performance.

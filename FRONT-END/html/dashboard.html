@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'><link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="icon" href="../img/Untitled design.png">
+  <link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet'>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="nav-bar">
+  <input id="nav-toggle" type="checkbox"/>
+  <div id="nav-header"><a id="nav-title" target="_blank">INSIGHTER</a>
+    <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+    <hr/>
+  </div>
+  <div id="nav-content">
+    <div class="nav-button"><a href="#section-channel-insights"><i class="fas fa-chart-line"></i></a><span>Channel Insights</span></div>
+    <div class="nav-button"><a href="#section-video-metrics"><i class="fas fa-video"></i></a><span>Video Metrics</span></div>
+    <div class="nav-button"><a href="#section-comments-analysis"><i class="fas fa-comment"></i></a><span>Comments Analysis</span></div>
+    <div class="nav-button"><a href="#section-playlist-overview"><i class="fas fa-list"></i></a><span>Playlist Overview</span></div>
+    <div class="nav-button"><a href="#section-video-search"><i class="fas fa-search"></i></a><span>Video Search</span></div>
+    <div class="nav-button"><a href="#section-related-videos"><i class="fas fa-link"></i></a><span>Related Videos</span></div>
+    <div class="nav-button"><a href="#section-engagement-metrics"><i class="fas fa-thumbs-up"></i></a><span>Engagement Metrics</span></div>
+    <div class="nav-button"><a href="#section-viewer-behaviour"><i class="fas fa-expand"></i></a><span>Viewer Behaviour</span></div>
+    <div class="nav-button"><a href="#section-performance-metrics"><i class="fas fa-chart-bar"></i></a><span>Performance Metrics</span></div>
+    <div id="nav-content-highlight"></div>
+  </div>
+  <input id="nav-footer-toggle" type="checkbox"/>
+  <div id="nav-footer">
+    <div id="nav-footer-heading">
+      <div id="nav-footer-avatar"><img src="../img/Untitled design.png"/></div>
+      <div id="nav-footer-titlebox"><a id="nav-footer-title" target="_blank">AI&DS</a><span id="nav-footer-subtitle">Admin</span></div>
+      <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
+    </div>
+    <div id="nav-footer-content">
+      <Lorem>This project, named 'INSIGHTER,' is a comprehensive YouTube analytics platform designed to provide deep insights into channel performance and video engagement. By leveraging data from the YouTube Data API, we offer detailed analyses on subscriber trends, video metrics, comments sentiment, and more, empowering content creators with valuable information to optimize their strategies and enhance viewer engagement.</Lorem>
+    </div>
+  </div>
+</div>
+
+<div id="section-channel-insights" class="nav-section">
+  <p>HI</p>
+</div>
+
+<div id="section-video-metrics" class="nav-section">
+  helo
+</div>
+
+<div id="section-comments-analysis" class="nav-section">
+  vanak
+</div>
+
+<div id="section-playlists-overview" class="nav-section">
+</div>
+
+<div id="section-video-search" class="nav-section">
+</div>
+
+<div id="section-related-videos" class="nav-section">
+</div>
+
+<div id="section-engagement-metrics" class="nav-section">
+</div>
+
+<div id="section-viewer-behavior" class="nav-section">
+</div>
+
+<div id="section-performance-metrics" class="nav-section">
+</div>
+
+<div id="section-footer" class="nav-section">
+</div>
+<script>
+  // JavaScript
+  document.addEventListener("DOMContentLoaded", function () {
+    const navButtons = document.querySelectorAll(".nav-button");
+    const sections = document.querySelectorAll(".nav-section");
+  
+    navButtons.forEach((button, index) => {
+      button.addEventListener("click", () => {
+        sections.forEach((section) => {
+          section.style.display = "none";
+        });
+        sections[index].style.display = "block";
+      });
+    });
+  });
+  
+
+</script>
+</body>
+</html>
