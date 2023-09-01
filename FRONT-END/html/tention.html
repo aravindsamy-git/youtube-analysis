@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Parser</title>
+</head>
+<body>
+    <script>
+        // Function to check if a string contains a YouTube URL
+        function checkUrl(url) {
+            return url.indexOf('youtube.com') !== -1 || url.indexOf('youtu.be') !== -1;
+        }
+
+        // Function to extract YouTube channel ID from a URL
+        async function channelId(url) {
+            if (checkUrl(url)) {
+                try {
+                    // Fetch the YouTube page content
+                    const response = await fetch(url);
+
+                    // Convert the response to text
+                    const pageContent = await response.text();
+
+                    // Extract the channel ID using regular expressions
+                    const match = pageContent.match(/"channelId":"([^"]+)"/);
+
+                    if (match && match[1]) {
+                        return match[1];
+                    } else {
+                        throw new Error(`Unable to find channel ID in "${url}"`);
+                    }
+                } catch (error) {
+                    throw new Error(`Error while fetching or parsing "${url}": ${error.message}`);
+                }
+            } else {
+                throw new Error(`"${url}" is not a YouTube URL.`);
+            }
+        }
+
+        // Function to extract YouTube video ID from a URL
+        async function videoId(url) {
+            if (checkUrl(url)) {
+                try {
+                    // Fetch the YouTube page content
+                    const response = await fetch(url);
+
+                    // Convert the response to text
+                    const pageContent = await response.text();
+
+                    // Extract the video ID using regular expressions
+                    const match = pageContent.match(/"videoId":"([^"]+)"/);
+
+                    if (match && match[1]) {
+                        return match[1];
+                    } else {
+                        throw new Error(`Unable to find video ID in "${url}"`);
+                    }
+                } catch (error) {
+                    throw new Error(`Error while fetching or parsing "${url}": ${error.message}`);
+                }
+            } else {
+                throw new Error(`"${url}" is not a YouTube URL.`);
+            }
+        }
+
+        // Example usage:
+        const url = 'https://www.youtube.com/@madangowri';
+
+        channelId(url)
+            .then(channelId => {
+                console.log(`Channel ID: ${channelId}`);
+            })
+            .catch(error => {
+                console.error(error.message);
+            });
+
+        videoId(url)
+            .then(videoId => {
+                console.log(`Video ID: ${videoId}`);
+            })
+            .catch(error => {
+                console.error(error.message);
+            });
+    </script>
+</body>
+</html>
+
