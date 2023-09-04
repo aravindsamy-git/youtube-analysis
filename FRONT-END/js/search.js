@@ -1,12 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     const searchButton = document.getElementById("searchQuerySubmit");
-    const searchResults = document.getElementById("searchResults");
 
     searchButton.addEventListener("click", () => {
         const channelName = document.getElementById("searchQueryInput").value;
+        console.log(channelName)
         searchChannels(channelName);
     });
 });
+
 
 function searchChannels(channelName) {
     const xhr = new XMLHttpRequest();
@@ -14,8 +15,21 @@ function searchChannels(channelName) {
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log(xhr.responseText)
-            document.getElementById("searchResults").innerHTML = xhr.responseText;
+            const channelList = document.getElementById("channel-list");
+
+            // Clear previous results
+            channelList.innerHTML = "";
+
+            const data = JSON.parse(xhr.responseText);
+
+            if (data.length > 0) {
+                const results = data.map((channel) => {
+                    return `<div><img src='${channel.logo}' alt='Channel Logo'><h2>${channel.name}</h2><p><strong>Description:</strong> ${channel.description}</p><p><strong>Subscribers:</strong> ${channel.subscriberCount}</p></div>`;
+                });
+                channelList.innerHTML = results.join("");
+            } else {
+                channelList.innerHTML = "No channels found with the name '" + channelName + "'";
+            }
         }
     };
 

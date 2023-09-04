@@ -1,79 +1,63 @@
 <?php
-// Replace 'YOUR_API_KEY' with your actual YouTube Data API key
-$apiKey = 'YOUR_API_KEY';
+if (isset($_GET["channelName"])) {
+    $channelName = $_GET["channelName"];
+    $apiKey = "AIzaSyApsrTvd8n3eF9UdxACQP7LXSxto48-vGk"; // Replace with your actual API key
 
-// Function to get the channel ID from a custom URL
-function getChannelIdFromCustomUrl($url, $apiKey) {
-    // Extract the username from the custom URL
-    $username = substr($url, strrpos($url, '@') + 1);
+    // Create a YouTube Data API request URL to search for channels
+    $channelSearchUrl = "https://www.googleapis.com/youtube/v3/search?q=" . urlencode($channelName) . "&type=channel&part=id&key=" . $apiKey;
 
-    // Prepare the YouTube Data API URL to retrieve channel ID based on the username
-    $apiUrl = "https://www.googleapis.com/youtube/v3/channels?part=id&forUsername=$username&key=$apiKey";
+    // Make the API request to search for channels
+    $channelSearchResponse = file_get_contents($channelSearchUrl);
 
-    // Make an HTTP request to the YouTube Data API
-    $response = file_get_contents($apiUrl);
+    // Parse the JSON response for channel search
+    $channelSearchData = json_decode($channelSearchResponse, true);
 
-    if ($response !== false) {
-        $data = json_decode($response, true);
+    // Initialize an array to store channel details
+    $channelDetails = [];
 
-        if (isset($data['items'][0]['id'])) {
-            return $data['items'][0]['id'];
-        }
-    }
+    // Display the channel information
+    if (isset($channelSearchData["items"])) {
+        foreach ($channelSearchData["items"] as $channelItem) {
+            $channelId = $channelItem["id"]["channelId"];
 
-    return false;
-}
+            // Create a YouTube Data API request URL to retrieve channel details
+            $channelDetailsUrl = "https://www.googleapis.com/youtube/v3/channels?id=" . $channelId . "&part=snippet,statistics&key=" . $apiKey;
 
-// Function to fetch channel details based on a query
-function fetchChannelDetails($query, $apiKey) {
-    $query = urlencode($query);
-    $apiEndpoint = "https://www.googleapis.com/youtube/v3/search?q=$query&type=channel&part=snippet&key=$apiKey";
-    $response = file_get_contents($apiEndpoint);
-    $data = json_decode($response, true);
+            // Make the API request to retrieve channel details
+            $channelDetailsResponse = file_get_contents($channelDetailsUrl);
 
-    $channelsData = [];
+            // Parse the JSON response for channel details
+            $channelDetailsData = json_decode($channelDetailsResponse, true);
 
-    if ($data && isset($data['items'])) {
-        foreach ($data['items'] as $channel) {
-            $title = $channel['snippet']['title'];
-            $description = $channel['snippet']['description'];
-            $thumbnail = $channel['snippet']['thumbnails']['default']['url'];
-            $customUrl = $channel['snippet']['customUrl'];
+            if (isset($channelDetailsData["items"][0])) {
+                $channelSnippet = $channelDetailsData["items"][0]["snippet"];
+                $channelStatistics = $channelDetailsData["items"][0]["statistics"];
+                $channelLogo = $channelSnippet["thumbnails"]["default"]["url"];
+                $channelTitle = $channelSnippet["title"];
+                $channelDescription = $channelSnippet["description"];
+                $subscriberCount = $channelStatistics["subscriberCount"];
 
-            $channelId = getChannelIdFromCustomUrl("https://www.youtube.com/@$customUrl", $apiKey);
-
-            if ($channelId) {
-                $channelsData[] = [
-                    'channelId' => $channelId,
-                    'title' => $title,
-                    'description' => $description,
-                    'thumbnail' => $thumbnail,
+                // Store channel details in an array
+                $channelDetails[] = [
+                    "logo" => $channelLogo,
+                    "name" => $channelTitle,
+                    "description" => $channelDescription,
+                    "subscriberCount" => $subscriberCount,
                 ];
             }
         }
     }
 
-    return $channelsData;
-}
-
-if (isset($_GET['query'])) {
-    $query = urlencode($_GET['query']);
-    $channelsData = fetchChannelDetails($query, $apiKey);
-
-    // Now you have an array of channel data that you can use as needed
-    // You can loop through $channelsData and populate the data as desired
-    foreach ($channelsData as $channelData) {
-        $channelId = $channelData['channelId'];
-        $title = $channelData['title'];
-        $description = $channelData['description'];
-        $thumbnail = $channelData['thumbnail'];
-
-        // Populate the data as needed (e.g., display in HTML)
-        echo "<div class='channel-card'>
-              <img src='$thumbnail' alt='Channel Thumbnail'>
-              <p class='channel-card-title'>$title</p>
-              <p class='channel-card-description'>$description</p>
-            </div>";
+    // Check if any channels were found and return the channel details as JSON
+    if (count($channelDetails) > 0) {
+        header("Content-Type: application/json");
+        echo json_encode($channelDetails);
+    } else {
+        $noChannelsMessage = ["message" => "No channels found with the name '" . $channelName . "'"];
+        header("Content-Type: application/json");
+        echo json_encode($noChannelsMessage);
     }
+} else {
+    echo "No channel name provided.";
 }
 ?>
