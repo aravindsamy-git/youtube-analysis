@@ -1,0 +1,4 @@
+.x-axis-labels text {
+    transform: translate(-10px, 0) rotate(-90deg); /* Adjust the rotation angle */
+    text-anchor: end;
+}
