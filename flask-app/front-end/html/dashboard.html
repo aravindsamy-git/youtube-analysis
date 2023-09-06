@@ -129,6 +129,18 @@
   <script src="../../front-end/js/basicscript.js"></script>
   <script src="../../front-end/js/section1.js"></script>
   <script src="../../front-end/js/section2.js"></script>
+  <script>
+    function scrollToSectionAndChannel(cha_id_check, sec_to_go){
+      const cha_id = cha_id_check;
+      const sec_to = sec_to_go;
+
+      sessionStorage.setItem("channel_id", cha_id);
+
+      if (window.location.hash === "#search-the-channel") {
+        window.location.hash = sec_to;
+      }
+  }
+  </script>
 </body>
 
 </html>

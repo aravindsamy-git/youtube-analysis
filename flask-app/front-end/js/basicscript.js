@@ -4,10 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.hash = "#search-the-channel";
   }
   const sections = document.querySelectorAll(".nav-section");
-  let currentDiv = null; // Track the currently displayed div
-  let previousUrl = window.location.href; // Track the previous URL
+  let currentDiv = null;
+  let previousUrl = window.location.href;
 
-  // Function to show the section based on the URL hash
   function showSectionByHash() {
     const hash = window.location.hash;
     const targetSection = document.querySelector(hash);
@@ -16,8 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
     for (const section of sections) {
       section.style.display = "none";
     }
-
-    // Show the selected section
     if (targetSection) {
       targetSection.style.display = "block";
       currentDiv = document.getElementById(targetSection.id + "-div");
@@ -27,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Add event listener to the popstate event (URL change)
   window.addEventListener("popstate", function (event) {
     const currentUrl = window.location.href;
     if (previousUrl === "http://127.0.0.1:5000/dashboard" && currentUrl !== "http://127.0.0.1:5000/dashboard") {
@@ -37,18 +33,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
     previousUrl = currentUrl;
-    showSectionByHash(); // Show the section based on the new hash
+    showSectionByHash();
   });
-
-  // Function to handle hashchange event
   function sectionchange() {
     showSectionByHash();
   }
-
-  // Add event listener to the URL hash change
   window.addEventListener("hashchange", sectionchange);
-
-  // Initially, show the section based on the current URL hash
   showSectionByHash();
 
 });
