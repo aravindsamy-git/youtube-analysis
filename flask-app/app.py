@@ -76,7 +76,7 @@ def count_word_frequencies(text):
 
     return word_frequencies
 
-@app.route('/word_frequency')
+@app.route('/word_frequencies', methods=['POST'])
 def generate_word_frequency():
     channel_id = 'UCX6OQ3DkcsbYNE6H8uQQuVA'
 
@@ -97,16 +97,14 @@ def generate_word_frequency():
 
     # Count word frequencies using the count_word_frequencies function
     word_frequencies = count_word_frequencies(channel_description)
-    print(word_frequencies)  # Debugging statement
     
     word_frequencies = [
     {"word": word, "frequency": frequency}
     for word, frequency in word_frequencies.items()]
     
-    print(word_frequencies)
 
     word_frequencies_json = json.dumps(word_frequencies)
-    return render_template('word_frequency.html', word_frequencies_json=word_frequencies_json)
+    return word_frequencies_json
 
 if __name__ == '__main__':
     app.run(debug=True)
