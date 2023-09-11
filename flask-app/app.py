@@ -78,8 +78,8 @@ def count_word_frequencies(text):
 
 @app.route('/word_frequencies', methods=['POST'])
 def generate_word_frequency():
-    channel_id = 'UCX6OQ3DkcsbYNE6H8uQQuVA'
-
+    channel_id = request.json['userinput']
+    
     # Initialize the YouTube Data API client
     youtube = build('youtube', 'v3', developerKey=api_key)
 
