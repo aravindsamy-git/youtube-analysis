@@ -73,7 +73,7 @@
   </section>
 
   <section id="section-channel-insights">
-    <div class="nav-section" id ="section-channel-insights-div" style="display: none;">
+    <div class="nav-section" id="section-channel-insights-div" style="display: none;">
       <p>channel-Insights</p>
       <div id="chart-container"></div>
     </div>
@@ -81,7 +81,8 @@
 
   <section id="section-video-metrics">
     <div class="nav-section" id="section-video-metrics-div" style="display: none;">
-      <p>video-metrics</p>
+      <ul id="top-engagement-videos">
+      </ul>
     </div>
   </section>
 
@@ -130,24 +131,25 @@
   <script src="../../front-end/js/basicscript.js"></script>
   <script src="../../front-end/js/section1.js"></script>
   <script src="../../front-end/js/section2.js"></script>
+  <script src="../../front-end/js/section3.js"></script>
   <script>
     function scrollToSectionAndChannel(cha_id_check, sec_to_go) {
       const cha_id = cha_id_check;
       const sec_to = sec_to_go;
 
       sessionStorage.removeItem("channel_id");
-  
+
       // Set the new channel_id in session storage
       sessionStorage.setItem("channel_id", cha_id);
 
       const channel_id = sessionStorage.getItem("channel_id");
 
       console.log(channel_id)
-  
+
       // Redirect to the "channel-insights" section
       window.location.hash = sec_to;
-  }
-  
+    }
+
   </script>
 </body>
 

@@ -7,10 +7,9 @@ from collections import Counter
 import json
 
 
-
 app = Flask(__name__, template_folder='front-end/html', static_folder='front-end')
 
-api_key = "AIzaSyD0t0SxBdD3OFS5snTtVLd4Rm3_zJDL0FE"
+api_key = "AIzaSyDHJgRvECdWfPV9xc_D-QMgIjebCzbsCNQ"
 
 youtube = googleapiclient.discovery.build("youtube", "v3", developerKey=api_key)
 
@@ -105,6 +104,76 @@ def generate_word_frequency():
 
     word_frequencies_json = json.dumps(word_frequencies)
     return word_frequencies_json
+
+@app.route('/video_metrics', methods=['POST'])
+def get_channel_video_metrics():
+    channel_id = request.json['userinput']
+
+    video_data_list = []
+
+    nextPageToken = None
+
+    while True:
+        try:
+            # Set up parameters for retrieving videos from the channel
+            video_search_response = youtube.search().list(
+                q='',
+                type='video',
+                channelId=channel_id,
+                part='snippet',
+                maxResults=50,  # Number of videos to retrieve per page (maximum: 50)
+                pageToken=nextPageToken
+            ).execute()
+
+            for search_result in video_search_response.get('items', []):
+                video_id = search_result['id']['videoId']
+                video_title = search_result['snippet']['title']
+
+                # Get video statistics (likes and comments)
+                video_stats_response = youtube.videos().list(
+                    part='statistics',
+                    id=video_id
+                ).execute()
+
+                # Check if the response contains items
+                if 'items' in video_stats_response:
+                    video_stats = video_stats_response['items'][0]['statistics']
+                    # Check if 'likeCount' and 'commentCount' fields exist
+                    likes = int(video_stats.get('likeCount', 0))
+                    comments = int(video_stats.get('commentCount', 0))
+                else:
+                    # Handle the case where video statistics are not available
+                    likes = 0
+                    comments = 0
+
+                # Calculate total engagement (likes + comments)
+                total_engagement = likes + comments
+
+                # You can add more video metrics as needed
+
+                video_data_list.append({
+                    "title": video_title,
+                    "likes": likes,
+                    "comments": comments,
+                    "total_engagement": total_engagement,  # Add total engagement
+                    # Add more video metrics here
+                })
+
+            # Check if there are more pages of results
+            nextPageToken = video_search_response.get('nextPageToken')
+            if not nextPageToken:
+                break
+
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+    # Sort the video list by total engagement (likes + comments) in descending order
+    sorted_videos = sorted(video_data_list, key=lambda x: x["total_engagement"], reverse=True)
+
+    # Get the top 10 engagement videos
+    top_10_engagement_videos = sorted_videos[:10]
+
+    return jsonify({"video_metrics": top_10_engagement_videos})
 
 if __name__ == '__main__':
     app.run(debug=True)
