@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+
+
   if (window.location.hash === "") {
     window.location.hash = "#search-the-channel";
   }
@@ -40,5 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   window.addEventListener("hashchange", sectionchange);
   showSectionByHash();
+  
 
 });

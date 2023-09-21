@@ -13,12 +13,13 @@
     border: 1px solid #ddd; /* Add a border to each list item */
     margin: 10px 0; /* Add spacing between list items */
     padding: 10px; /* Add padding inside each list item */
-    background-color: #f9f9f9; /* Background color for list items */
+    background-color: black; /* Background color for list items */
 }
 
 #top-engagement-videos h3 {
     font-size: 18px; /* Set the font size for video titles */
     margin: 0; /* Remove margin for video titles */
+    font-weight: lighter;
 }
 
 #top-engagement-videos p {
@@ -27,7 +28,7 @@
 
 /* Styling for individual video metrics (likes, comments, total engagement) */
 #top-engagement-videos p {
-    font-weight: bold; /* Make the metrics text bold */
+    font-weight: lighter;
 }
 
 /* Styling for different metrics */

@@ -8,12 +8,24 @@
   <link rel="stylesheet" href="../front-end/css/dashboard.css">
   <link rel="stylesheet" href="../front-end/css/section1.css">
   <link rel="stylesheet" href="../front-end/css/section2.css">
+  <link rel="stylesheet" href="../../front-end/css/loader.css">
   <link rel="icon" href="../front-end/img/Untitled design.png">
   <link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet'>
   <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 
 <body>
+
+  <div id="loader" class="jumpy-bars">
+    <div class="bar" id="bar1"></div>
+    <div class="bar" id="bar2"></div>
+    <div class="bar" id="bar3"></div>
+    <div class="bar" id="bar4"></div>
+    <div class="bar" id="bar5"></div>
+    <div class="bar" id="bar6"></div>
+    <div class="bar" id="bar7"></div>
+  </div>
+  
   <div id="nav-bar">
     <div id="nav-header"><a id="nav-title" target="_blank">INSIGHTER</a></div>
     <div id="nav-content">
@@ -25,28 +37,10 @@
           <a href="#section-channel-insights"><i class="fas fa-chart-line"></i>Channel Insights</a>
         </li>
         <li class="nav-button">
-          <a href="#section-video-metrics"><i class="fas fa-video"></i>Video Metrics</a>
+          <a href="#section-video-metrics"><i class="fas fa-video"></i>Top videos</a>
         </li>
         <li class="nav-button">
           <a href="#section-comments-analysis"><i class="fas fa-comment"></i>Comments Analysis</a>
-        </li>
-        <li class="nav-button">
-          <a href="#section-playlist-overview"><i class="fas fa-list"></i>Playlist Overview</a>
-        </li>
-        <li class="nav-button">
-          <a href="#section-video-search"><i class="fas fa-search-plus"></i>Video Search</a>
-        </li>
-        <li class="nav-button">
-          <a href="#section-related-videos"><i class="fas fa-link"></i>Related Videos</a>
-        </li>
-        <li class="nav-button">
-          <a href="#section-engagement-metrics"><i class="fas fa-thumbs-up"></i>Engagement Metrics</a>
-        </li>
-        <li class="nav-button">
-          <a href="#section-viewer-behaviour"><i class="fas fa-expand"></i>ViewerBehaviour</a>
-        </li>
-        <li class="nav-button">
-          <a href="#section-performance-metrics"><i class="fas fa-chart-bar"></i>Performance Metrics</a>
         </li>
         <li id="nav-content-highlight"></li>
       </ul>
@@ -81,6 +75,7 @@
 
   <section id="section-video-metrics">
     <div class="nav-section" id="section-video-metrics-div" style="display: none;">
+      <p>Top Engaged Videos</p>
       <ul id="top-engagement-videos">
       </ul>
     </div>
@@ -89,49 +84,16 @@
   <section id="section-comments-analysis">
     <div class="nav-section" id="section-comments-analysis-div" style="display: none;">
       <p>comments-analysis</p>
-    </div>
-  </section>
-
-  <section id="section-playlist-overview">
-    <div class="nav-section" id="section-playlist-overview-div" style="display: none;">
-      <p>playlists-overview</p>
-    </div>
-  </section>
-
-  <section id="section-video-search">
-    <div class="nav-section" id="section-video-search-div" style="display: none;">
-      <p>video-search</p>
-    </div>
-  </section>
-
-  <section id="section-related-videos">
-    <div class="nav-section" id="section-related-videos-div" style="display: none;">
-      <p>related-videos</p>
-    </div>
-  </section>
-
-  <section id="section-engagement-metrics">
-    <div class="nav-section" id="section-engagement-metrics-div" style="display: none;">
-      <p>engagement-metrics</p>
-    </div>
-  </section>
-
-  <section id="section-viewer-behaviour">
-    <div class="nav-section" id="section-viewer-behaviour-div" style="display: none;">
-      <p>ViewerBehaviour</p>
-    </div>
-  </section>
-
-  <section id="section-performance-metrics">
-    <div class="nav-section" id="section-performance-metrics-div" style="display: none;">
-      <p>performance-metrics</p>
+      <canvas id="sentimentChart" width="200" height="200"></canvas>
     </div>
   </section>
 
   <script src="../../front-end/js/basicscript.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="../../front-end/js/section1.js"></script>
   <script src="../../front-end/js/section2.js"></script>
   <script src="../../front-end/js/section3.js"></script>
+  <script src="../../front-end/js/description.js"></script>
   <script>
     function scrollToSectionAndChannel(cha_id_check, sec_to_go) {
       const cha_id = cha_id_check;

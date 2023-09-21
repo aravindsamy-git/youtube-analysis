@@ -1,45 +1,51 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const initialHash = window.location.hash;
-  
-    if (initialHash === "#search-the-channel") {
-      const searchButton = document.getElementById("searchQuerySubmit");
-      const searchInput = document.getElementById("searchQueryInput");
-  
-      // Add event listener for the search button click
-      searchButton.addEventListener("click", handleSearch);
-  
-      // Add event listener for the Enter key press in the input field
-      searchInput.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-          handleSearch();
-        }
-      });
-  
-      function handleSearch() {
-        // Check if channel_id is in session storage and remove it
-        if (sessionStorage.getItem("channel_id")) {
-          sessionStorage.removeItem("channel_id");
-        }
-  
-        // Rest of your search code here
-        const channelName = searchInput.value;
-        // Create a JSON object with the user input
-        const inputData = { userinput: channelName };
-  
-        fetch('/searchchannel', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(inputData),
-        })
-        .then(response => response.json())
-        .then(data => {
-          // Handle the JSON data (channel data) here
-          updateChannelList(data); // Call the function to update the HTML with channel data
-        })
-        .catch(error => console.error('Error:', error));
+  const initialHash = window.location.hash;
+
+  if (initialHash === "#search-the-channel") {
+    const searchButton = document.getElementById("searchQuerySubmit");
+    const searchInput = document.getElementById("searchQueryInput");
+    const loader = document.getElementById("loader"); // Add this line
+
+    // Add event listener for the search button click
+    searchButton.addEventListener("click", handleSearch);
+
+    // Add event listener for the Enter key press in the input field
+    searchInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        handleSearch();
       }
+    });
+
+    function handleSearch() {
+      // Show the loader
+      loader.style.display = "block";
+
+      // Rest of your search code here
+      const channelName = searchInput.value;
+      // Create a JSON object with the user input
+      const inputData = { userinput: channelName };
+
+      fetch('/searchchannel', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(inputData),
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Hide the loader
+        loader.style.display = "none";
+
+        // Handle the JSON data (channel data) here
+        updateChannelList(data); // Call the function to update the HTML with channel data
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Hide the loader in case of an error
+        loader.style.display = "none";
+      });
+    }
   
       // Function to update the HTML with channel data
       function updateChannelList(channelData) {

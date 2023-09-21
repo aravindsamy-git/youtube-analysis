@@ -15,17 +15,6 @@
 
 <body>
     <section id="intro" class="section">
-        <nav id="navbar" class="">
-            <div class="nav-wrapper">
-                <ul id="menu">
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#howitworks">How It Works</a></li>
-                    <li><a href="#loginregister">Login/Register</a></li>
-                </ul>
-            </div>
-        </nav>
-
         <a class="hometext">HOME</a>
 
         <div id="image-container">
@@ -39,45 +28,58 @@
         <p class="head-tag1">ABOUT US</p>
         <div class="corner-container" data-aos="zoom-out-down" data-aos-anchor=".head-tag1" data-aos-duration="3000">
             <p class="about-text">
-                Welcome to Insighter, your go-to platform for gaining valuable insights from the world of YouTube. Whether you're a content creator, marketer, or just someone fascinated by data, we're here to provide you with the tools and information you need to make informed decisions. Our mission is to empower you with actionable analytics, trends, and statistics that can drive your YouTube strategies to new heights
+                Welcome to Insighter, your go-to platform for gaining valuable insights from the world of YouTube.
+                Whether you're a content creator, marketer, or just someone fascinated by data, we're here to provide
+                you with the tools and information you need to make informed decisions. Our mission is to empower you
+                with actionable analytics, trends, and statistics that can drive your YouTube strategies to new heights
             </p>
             <img src="../front-end/img/What-is-Web-Analytics.jpg" class="about-image" />
         </div>
     </section>
-    
-    
+
+
 
     <section id="features" class="section">
         <p class="head-tag2">FEATURES</p>
-        <div class="features-container" data-aos="fade-down-right" data-aos-anchor=".features-container" data-aos-duration="1000">
+        <div class="features-container" data-aos="fade-down-right" data-aos-anchor=".features-container"
+            data-aos-duration="1000">
             <p class="features-head1">Comprehensive Analytics:</p>
-            <p class="features-text1">Dive deep into your YouTube performance with our comprehensive analytics tools. Understand your audience demographics, video engagement, and growth trends like never before</p>
+            <p class="features-text1">Dive deep into your YouTube performance with our comprehensive analytics tools.
+                Understand your audience demographics, video engagement, and growth trends like never before</p>
             <p class="features-head3">Competitor Insights:</p>
-            <p class="features-text3">Uncover the strategies of your competitors by benchmarking their performance against yours. Gain valuable insights into their top-performing videos and audience engagemen</p>
+            <p class="features-text3">Uncover the strategies of your competitors by benchmarking their performance
+                against yours. Gain valuable insights into their top-performing videos and audience engagemen</p>
             <p class="features-head5">Channel Optimization:</p>
-            <p class="features-text5">Optimize your channel for maximum growth with our channel optimization tools. Identify your top-performing videos and discover the best time to post new content</p>
+            <p class="features-text5">Optimize your channel for maximum growth with our channel optimization tools.
+                Identify your top-performing videos and discover the best time to post new content</p>
         </div>
-        <div class="features-container" data-aos="fade-down-left" data-aos-anchor=".features-container" data-aos-duration="1000">
+        <div class="features-container" data-aos="fade-down-left" data-aos-anchor=".features-container"
+            data-aos-duration="1000">
             <p class="features-head2">Trend Analysis:</p>
-            <p class="features-text2"> Stay ahead of the curve by tracking the latest trends and viral content. Our trend analysis feature helps you identify emerging topics and capitalize on trending topics</p>
+            <p class="features-text2"> Stay ahead of the curve by tracking the latest trends and viral content. Our
+                trend analysis feature helps you identify emerging topics and capitalize on trending topics</p>
             <p class="features-head4">Data Visualization:</p>
-            <p class="features-text4">Visualize your data with stunning charts and graphs that make complex analytics easy to understand. Make data-driven decisions with confidence</p>
+            <p class="features-text4">Visualize your data with stunning charts and graphs that make complex analytics
+                easy to understand. Make data-driven decisions with confidence</p>
             <p class="features-head6">Customized Recommendations:</p>
-            <p class="features-text6">Receive personalized recommendations based on your performance data. Optimize your content strategy and increase your reach</p>
+            <p class="features-text6">Receive personalized recommendations based on your performance data. Optimize your
+                content strategy and increase your reach</p>
         </div>
     </section>
 
     <section id="howitworks" class="section">
         <p class="head-tag3">HOW-IT-WORKS?</p>
-        <p class="how-text">Embarking on a captivating journey through YouTube channels has never been easier, 
-            thanks to our user-friendly website. By simply inputting the channel's name or ID, you unlock 
-            a wealth of information—tracing its growth, video posting habits, and engagement strategies. 
-            Our platform brings this data to life through interactive visuals, enabling you to uncover 
-            top-performing videos and glean insights into content creation tactics. With a seamless interface, 
-            you're guided through an informative pathway to unravel the success stories of your favorite channels. 
-            Our system meticulously collects and analyzes data, revealing growth patterns, posting strategies, and more. 
-            Through clear visualizations and precise metrics, you'll gain an intimate understanding of the channel's evolution. 
-            Whether you're a content creator seeking inspiration or a curious viewer, our platform transforms raw data into valuable insights, 
+        <p class="how-text">Embarking on a captivating journey through YouTube channels has never been easier,
+            thanks to our user-friendly website. By simply inputting the channel's name or ID, you unlock
+            a wealth of information—tracing its growth, video posting habits, and engagement strategies.
+            Our platform brings this data to life through interactive visuals, enabling you to uncover
+            top-performing videos and glean insights into content creation tactics. With a seamless interface,
+            you're guided through an informative pathway to unravel the success stories of your favorite channels.
+            Our system meticulously collects and analyzes data, revealing growth patterns, posting strategies, and more.
+            Through clear visualizations and precise metrics, you'll gain an intimate understanding of the channel's
+            evolution.
+            Whether you're a content creator seeking inspiration or a curious viewer, our platform transforms raw data
+            into valuable insights,
             allowing you to truly grasp the essence of any YouTube channel.</p>
     </section>
 
@@ -86,32 +88,41 @@
 
         <div class="container" id="container">
             <div class="form-container sign-up-container">
-                <form action="../frontend/js/signup.js">
+                <form action="/register" method="POST"> <!-- Updated action attribute -->
                     <h1 class="h1class">Create Account</h1>
-                    <input type="text" placeholder="Name" />
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <button>Sign Up</button>
+                    <input type="text" name="name" placeholder="Name" required /> <!-- Added name attribute -->
+                    <input type="email" name="email" placeholder="Email" required />
+                    <input type="password" name="password" placeholder="Password" required />
+                    <button type="submit">Sign Up</button>
                 </form>
             </div>
+
             <div class="form-container sign-in-container">
-                <form action="../front-end/js/signin.js">
+                <form action="/login" method="POST">
                     <h1 class="h1class">Sign in</h1>
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <button>Sign In</button>
+                    <input type="email" placeholder="Email" name="email" required />
+                    <input type="password" placeholder="Password" name="password" required />
+                    <button type="submit">Sign In</button>
                 </form>
             </div>
+
+
             <div class="overlay-container">
                 <div class="overlay">
                     <div class="overlay-panel overlay-left">
                         <h1 class="h1class">Welcome Back!</h1>
-                        <p class="pclass">Welcome back to Insighter! We're excited to have you here again. Sign in using your email and password to access your account and dive into the world of data-driven insights. Your valuable data is just a few clicks away. Let's continue our journey together!</p>
+                        <p class="pclass">Welcome back to Insighter! We're excited to have you here again. Sign in using
+                            your email and password to access your account and dive into the world of data-driven
+                            insights. Your valuable data is just a few clicks away. Let's continue our journey together!
+                        </p>
                         <button class="ghost" id="signIn">Sign In</button>
                     </div>
                     <div class="overlay-panel overlay-right">
                         <h1 class="h1class">Hello, Friend!</h1>
-                        <p class="pclass">Join the Insighter community today and unlock a world of possibilities. As a new member, you'll gain access to cutting-edge analytics and trends that can shape your YouTube strategies. Creating an account is simple. Provide your name, email, and a secure password to get started. Let's embark on this insightful journey together</p>
+                        <p class="pclass">Join the Insighter community today and unlock a world of possibilities. As a
+                            new member, you'll gain access to cutting-edge analytics and trends that can shape your
+                            YouTube strategies. Creating an account is simple. Provide your name, email, and a secure
+                            password to get started. Let's embark on this insightful journey together</p>
                         <button class="ghost" id="signUp">Sign Up</button>
                     </div>
                 </div>
@@ -127,4 +138,5 @@
         AOS.init()
     </script>
 </body>
+
 </html>
