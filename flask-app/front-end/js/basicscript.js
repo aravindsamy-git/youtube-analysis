@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-
-
   if (window.location.hash === "") {
     window.location.hash = "#search-the-channel";
   }
@@ -12,8 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function showSectionByHash() {
     const hash = window.location.hash;
     const targetSection = document.querySelector(hash);
-
-    // Hide all sections
+    
     for (const section of sections) {
       section.style.display = "none";
     }

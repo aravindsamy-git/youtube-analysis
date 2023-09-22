@@ -1,45 +1,42 @@
 .x-axis-labels text {
-    transform: translate(-10px, 0) rotate(-90deg); /* Adjust the rotation angle */
+    transform: translate(-10px, 0) rotate(-90deg);
     text-anchor: end;
 }
 
-/* CSS for styling the top 10 engagement videos */
 #top-engagement-videos {
-    list-style-type: none; /* Remove bullet points from list items */
-    padding: 0; /* Remove default padding */
+    list-style-type: none;
+    padding: 0;
 }
 
 #top-engagement-videos li {
-    border: 1px solid #ddd; /* Add a border to each list item */
-    margin: 10px 0; /* Add spacing between list items */
-    padding: 10px; /* Add padding inside each list item */
-    background-color: black; /* Background color for list items */
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: black;
 }
 
 #top-engagement-videos h3 {
-    font-size: 18px; /* Set the font size for video titles */
-    margin: 0; /* Remove margin for video titles */
+    font-size: 18px;
+    margin: 0;
     font-weight: lighter;
 }
 
 #top-engagement-videos p {
-    margin: 5px 0; /* Add spacing between paragraphs */
+    margin: 5px 0;
 }
 
-/* Styling for individual video metrics (likes, comments, total engagement) */
 #top-engagement-videos p {
     font-weight: lighter;
 }
 
-/* Styling for different metrics */
 #top-engagement-videos p.likes {
-    color: #4CAF50; /* Green color for likes */
+    color: #4CAF50;
 }
 
 #top-engagement-videos p.comments {
-    color: #2196F3; /* Blue color for comments */
+    color: #2196F3;
 }
 
 #top-engagement-videos p.total-engagement {
-    color: #FF5722; /* Orange color for total engagement */
+    color: #FF5722;
 }

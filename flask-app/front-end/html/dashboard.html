@@ -84,7 +84,7 @@
   <section id="section-comments-analysis">
     <div class="nav-section" id="section-comments-analysis-div" style="display: none;">
       <p>comments-analysis</p>
-      <canvas id="sentimentChart" width="200" height="200"></canvas>
+      <canvas id="sentimentChart" width="100" height="100"></canvas>
     </div>
   </section>
 
@@ -100,15 +100,11 @@
       const sec_to = sec_to_go;
 
       sessionStorage.removeItem("channel_id");
-
-      // Set the new channel_id in session storage
       sessionStorage.setItem("channel_id", cha_id);
 
       const channel_id = sessionStorage.getItem("channel_id");
 
       console.log(channel_id)
-
-      // Redirect to the "channel-insights" section
       window.location.hash = sec_to;
     }
 

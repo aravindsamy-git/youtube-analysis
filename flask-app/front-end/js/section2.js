@@ -1,20 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
     let svg = null;
-    let width, height; // Declare width and height variables
+    let width, height;
     let messageElement = null;
 
     window.addEventListener("hashchange", function (event) {
         const currentHash = window.location.hash;
         if (currentHash === "#section-channel-insights") {
-            // Clear existing chart and message
             clearGraph();
             clearMessage();
-
-            // Check if channel_id is in session storage and remove it
-            // Get the channel_id from session storage
             const channel_id = sessionStorage.getItem("channel_id");
-
-            // Call the function to handle word frequency
             handleWordFrequency(channel_id);
         }
     });
@@ -23,12 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (initialHash === "#section-channel-insights") {
         const channel_id = sessionStorage.getItem("channel_id");
-
-        // Call the function to handle word frequency without data for the initial load
         handleWordFrequency(channel_id);
     }
-
-    // Create the SVG element once with initial dimensions
     const margin = { top: 50, right: 30, bottom: 90, left: 70 };
     width = 500 - margin.left - margin.right;
     height = 500 - margin.top - margin.bottom;
@@ -40,24 +30,18 @@ document.addEventListener("DOMContentLoaded", function () {
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
 
-    // Define the function to clear the existing chart
     function clearGraph() {
-        // Check if an SVG element exists and remove it
         if (svg) {
-            svg.selectAll("*").remove(); // Remove all child elements
+            svg.selectAll("*").remove();
         }
     }
-
-    // Define the function to update the chart
     function updateChart(data) {
         clearGraph();
         createChart(data);
     }
 
-    // Define the function to display a message
     function showMessage(message) {
         if (!messageElement) {
-            // Create the message element if it doesn't exist
             messageElement = svg.append("text")
                 .attr("x", width / 2)
                 .attr("y", height / 2)
@@ -70,32 +54,23 @@ document.addEventListener("DOMContentLoaded", function () {
             messageElement.text(message);
         }
     }
-
-    // Define the function to clear the message
     function clearMessage() {
         if (messageElement) {
-            // Remove the message element
             messageElement.remove();
             messageElement = null;
         }
     }
 
-    // Define the function to create an empty chart with a message
-    // Define the function to create an empty chart with a message
     function createEmptyChart(message) {
-        clearGraph(); // Clear existing chart if it exists
-
+        clearGraph();
         svg.attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-        showMessage(message); // Display the message
+        showMessage(message);
     }
-
-
-    // Define the function to create a chart
     function createChart(data) {
-        clearGraph(); // Clear existing chart if it exists
+        clearGraph();
 
         const filteredWordFrequencies = data.filter(d => d.frequency > 1 || d.description);
 
@@ -145,10 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function handleWordFrequency(channel_id) {
-        // Check if channel_id is available
         if (channel_id) {
-            // Fetch data or perform necessary operations to get the data
-            // Once you have the data, call createChart(data) or updateChart(data) as needed
             fetch('/word_frequencies', {
                 method: 'POST',
                 headers: {
@@ -160,7 +132,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then(data => {
 
                     if (!data || (Array.isArray(data) && data.every(item => item.frequency === 1))) {
-                        // Data is null or all word frequencies are 1, return without creating the graph
                         createEmptyChart("No word frequency data available for this channel.");
                         return;
                     }

@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let chart = null; // Declare a variable to hold the chart instance
-    const loader = document.getElementById("loader"); // Add this line
+    let chart = null;
+    const loader = document.getElementById("loader");
 
     function fetchAndPlotSentimentData(channel_id) {
         loader.style.display = "block";
-        // Check if a chart exists and destroy it
         if (chart) {
             chart.destroy();
         }
@@ -19,11 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-
-                // Extract sentiment data
                 const { positive, neutral, negative } = data;
-
-                // Create a bar chart
                 const ctx = document.getElementById('sentimentChart').getContext('2d');
                 chart = new Chart(ctx, {
                     type: 'bar',
@@ -69,8 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
             fetchAndPlotSentimentData(channel_id);
         }
     });
-
-    // Initial load
     const initialHash = window.location.hash;
     if (initialHash === "#section-comments-analysis") {
         const channel_id = sessionStorage.getItem("channel_id");

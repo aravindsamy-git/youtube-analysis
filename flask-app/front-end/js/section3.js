@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function videometrics(channel_id){
         if (channel_id) {
-            // Make an API call to your Python function to fetch data
             fetch('/video_metrics', {
                 method: 'POST',
                 headers: {
@@ -14,8 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then(data => {
                     console.log(data);
                     const topEngagementVideosList = document.getElementById('top-engagement-videos');            
-    
-                    // Iterate through the top engagement videos and create list items
                     data.video_metrics.forEach(video => {
                         const listItem = document.createElement('li');
                         listItem.innerHTML = `
@@ -27,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         topEngagementVideosList.appendChild(listItem);
                     });
                     
-                    // Display the section after populating data
                     const sectionVideoMetrics = document.getElementById('section-video-metrics-div');
                     sectionVideoMetrics.style.display = 'block';
                 })

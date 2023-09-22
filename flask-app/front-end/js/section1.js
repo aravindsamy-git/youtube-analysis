@@ -4,12 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (initialHash === "#search-the-channel") {
     const searchButton = document.getElementById("searchQuerySubmit");
     const searchInput = document.getElementById("searchQueryInput");
-    const loader = document.getElementById("loader"); // Add this line
 
-    // Add event listener for the search button click
     searchButton.addEventListener("click", handleSearch);
 
-    // Add event listener for the Enter key press in the input field
     searchInput.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         handleSearch();
@@ -17,12 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function handleSearch() {
-      // Show the loader
-      loader.style.display = "block";
-
-      // Rest of your search code here
       const channelName = searchInput.value;
-      // Create a JSON object with the user input
       const inputData = { userinput: channelName };
 
       fetch('/searchchannel', {
@@ -34,20 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(response => response.json())
       .then(data => {
-        // Hide the loader
-        loader.style.display = "none";
-
-        // Handle the JSON data (channel data) here
-        updateChannelList(data); // Call the function to update the HTML with channel data
+        updateChannelList(data);
       })
       .catch(error => {
         console.error('Error:', error);
-        // Hide the loader in case of an error
-        loader.style.display = "none";
       });
     }
-  
-      // Function to update the HTML with channel data
       function updateChannelList(channelData) {
         const channelContainer = document.getElementById("channelContainer");
   
@@ -56,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (channelData.length > 0) {
           channelData.forEach((channel) => {
             const channelElement = document.createElement("div");
-            channelElement.classList.add("card"); // Add the "card" class to the card div
+            channelElement.classList.add("card");
             channelElement.innerHTML = `
               <img src='${channel.logo}' alt='Channel Logo'>
               <h2>${channel.name}</h2>
@@ -67,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
           });
   
         } else {
-          // No channels found message
           const messageElement = document.createElement("p");
           messageElement.textContent = "No channels found with the given name.";
           channelContainer.appendChild(messageElement);
